@@ -2,7 +2,7 @@
 name: mlx
 label: MLX
 title: ASIMOV MLX Module
-summary: LLM inference powered by MLX
+summary: LLM inference powered by MLX.
 links:
   - https://github.com/asimov-modules/asimov-mlx-module
   - https://crates.io/crates/asimov-mlx-module
