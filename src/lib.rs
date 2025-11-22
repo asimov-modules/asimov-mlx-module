@@ -17,6 +17,9 @@ use alloc::vec;
 pub struct Options {
     #[builder(default = "mlx-community/Llama-3.2-3B-Instruct-4bit")]
     pub model: String,
+
+    #[builder(default = 1000)]
+    pub max_tokens: usize,
 }
 
 #[cfg(feature = "std")]
@@ -29,9 +32,10 @@ pub fn generate(input: impl AsRef<str>, options: &Options) -> Result<Vec<String>
     cmd.stdin(Stdio::null());
     cmd.stdout(Stdio::piped());
     cmd.stderr(Stdio::piped());
+    cmd.args(["--verbose", "False"]);
     cmd.args(["--model", &options.model]);
     cmd.args(["--prompt", input.as_ref()]);
-    cmd.args(["--verbose", "False"]);
+    cmd.args(["--max-tokens", &options.max_tokens.to_string()]);
 
     let output = cmd
         .spawn()

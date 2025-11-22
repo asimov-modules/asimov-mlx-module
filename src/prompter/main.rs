@@ -15,8 +15,13 @@ struct Options {
     #[clap(flatten)]
     flags: StandardOptions,
 
+    /// Choose which model to use. A missing model will be downloaded from Hugging Face.
     #[clap(long, short = 'm')]
     model: Option<String>,
+
+    /// Maximum number of tokens to generate.
+    #[clap(long, default_value = "1000")]
+    max_tokens: usize,
 
     input: Option<String>,
     output: Option<String>,
@@ -83,7 +88,10 @@ pub fn main() -> Result<SysexitsError> {
         Box::new(out)
     };
 
-    let options = asimov_mlx_module::Options::builder().model(model).build();
+    let options = asimov_mlx_module::Options::builder()
+        .model(model)
+        .max_tokens(options.max_tokens)
+        .build();
 
     let response =
         asimov_mlx_module::generate(&input, &options).context("failed to generate response")?;
