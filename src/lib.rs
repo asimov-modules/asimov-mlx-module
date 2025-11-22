@@ -6,8 +6,8 @@
 #[cfg(feature = "std")]
 extern crate std;
 
+use anyhow::{Context as _, Result};
 use asimov_module::{prelude::*, tracing};
-use core::error::Error;
 
 extern crate alloc;
 use alloc::vec;
@@ -20,7 +20,7 @@ pub struct Options {
 }
 
 #[cfg(feature = "std")]
-pub fn generate(input: impl AsRef<str>, options: &Options) -> Result<Vec<String>, Box<dyn Error>> {
+pub fn generate(input: impl AsRef<str>, options: &Options) -> Result<Vec<String>> {
     use std::process::Stdio;
 
     let mut cmd = std::process::Command::new("mlx_lm.generate");
@@ -35,9 +35,9 @@ pub fn generate(input: impl AsRef<str>, options: &Options) -> Result<Vec<String>
 
     let output = cmd
         .spawn()
-        .inspect_err(|err| tracing::error!(?err, "unable to run mlx"))?
+        .context("unable to execute mlx")?
         .wait_with_output()
-        .inspect_err(|err| tracing::error!(?err, "mlx execution failed"))?;
+        .context("mlx execution failed")?;
 
     if !output.stderr.is_empty() {
         String::from_utf8(output.stderr)

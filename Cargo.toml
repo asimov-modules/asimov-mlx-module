@@ -26,7 +26,13 @@ cli = [
   "dep:clap",
   "dep:clientele",
 ]
-std = ["asimov-module/std", "bon/std", "clap?/std", "clientele?/std"]
+std = [
+  "anyhow/std",
+  "asimov-module/std",
+  "bon/std",
+  "clap?/std",
+  "clientele?/std",
+]
 unstable = []
 
 # Optional features:
@@ -34,6 +40,7 @@ pretty = []
 tracing = ["asimov-module/tracing", "clientele?/tracing"]
 
 [dependencies]
+anyhow = { version = "1.0", default-features = false }
 asimov-module = { version = "25.0.0-dev.21", default-features = false }
 bon = { version = "3.7.2", default-features = false, features = ["alloc"] }
 
