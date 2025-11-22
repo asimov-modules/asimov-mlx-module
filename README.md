@@ -13,6 +13,7 @@
 ## 🛠️ Prerequisites
 
 - [Rust] 1.85+ (2024 edition) if building from source code
+- [MLX LM](https://github.com/ml-explore/mlx-lm), `mlx_lm.generate` must accessible in `$PATH`.
 
 ## ⬇️ Installation
 
