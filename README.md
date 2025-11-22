@@ -32,7 +32,7 @@ cargo install asimov-mlx-module
 ## 👉 Examples
 
 ```bash
-asimov-mlx-prompter
+echo "Why is the sky blue?" | asimov-mlx-prompter
 ```
 
 ## ⚙ Configuration
