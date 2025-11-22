@@ -40,7 +40,7 @@ asimov-mlx-prompter
 
 | Name    | Environment Variable | Default                                    |
 | ------- | -------------------- | ------------------------------------------ |
-| `model` | `MLX_MODEL`          | `mlx-community/Llama-3.2-3B-Instruct-4bit` |
+| `model` | `ASIMOV_MLX_MODEL`   | `mlx-community/Llama-3.2-3B-Instruct-4bit` |
 
 ## 📚 Reference
 
